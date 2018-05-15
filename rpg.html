@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RPG: Super Smash Bros</title>
+    <!--Css link-->
+    <link rel="stylesheet" type="text/css" href="assets/rpgstyle.css">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <style>
+    
+    body {
+        background-image: url("assets/images/smash-bros-stage.jpg");
+    }
+    </style>
+
+</head>
+<body>
+
+    <div class="row" id="header">
+
+        <!--Logo all the way to the left-->
+        <img src="assets/images/smashbros-logo.png" id="logo" class="img-fluid">
+
+        <!--Global-Stats all the way to the right-->
+        <div id="global-stats">
+            <h1> <div id="total-wins"></div> :TOTAL WINS</h1>
+            <h1> <div id="wins"></div> :WINS</h1>
+            <h1> <div id="losses"></div> :LOSSES</h1>
+        </div>
+
+    </div>
+
+    <div class="row" id="battle-stage">
+
+        <!--Battle stage, characters and buttons occupying 11 cols-->
+
+        <div class="col-10">
+            <div class="container">
+
+                <div class="row" id="figthers">
+
+                    <div id="your-character">
+                        <!--insert character-->
+                    </div>
+
+                    <div id="selected-defender">
+                        <!--insert character-->
+                    </div>
+
+                </div>
+
+                <div class="row" id="fight-buttons">
+
+                    <!--Fight and Defender buttons-->
+                        <button type="button" class="btn btn-danger" id="attack-btn">Attack</button>
+                    
+                        <button type="button" class="btn btn-warning" id="defender-btn">Choose a defender</button>
+
+                </div>
+
+                <div class="row" id="battle-log">
+                    <h2>Battle Log:</h2>
+                    <br>
+                    <br>
+                    <p id="log"></p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-2">
+            
+        <!--Choose your characters on the right col-->
+            <div id="characters">
+                <a>
+                    <img class="img-fluid" src="assets/images/kirby.png">
+                </a>
+
+                <a>
+                <img class="img-fluid" src="assets/images/link.png">
+                </a>
+                
+                <a>
+                <img class="img-fluid" src="assets/images/mario.png">
+                </a>
+
+                <a>
+                <img class="img-fluid" src="assets/images/pikachu.png">
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!--JS link-->
+    <script type="text/javasript" src="assets/rpglogic.js"></script>
+    <!--Bootstrap JS-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+</body>
+</html>

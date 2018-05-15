@@ -1,0 +1,66 @@
+#logo {
+    width: 30%;
+    height: 30%;;
+}
+
+#global-stats {
+    position: relative;
+    left: 53%;
+    color: white;
+    text-align: right;
+}
+
+#characters a{
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#characters img:hover{
+    background-color: green;
+}
+
+#characters img{
+    width: 50%;
+    height: 50%;
+    position: relative;
+    left: 35%;
+}
+
+#your-character img{
+    width: 40%;
+    height: 40%;
+    margin-left: 30%;
+    position: relative;
+    float: left;
+}
+
+#selected-defender img{
+    width: 60%;
+    height: 60%;
+    position: relative;
+    left: 50%;
+    float: right;
+}
+
+#fight-buttons {
+    position: absolute;
+    margin-top: 15%;
+}
+
+#attack-btn {
+    position: relative;
+    float: left;
+    left: 50% !important;
+}
+
+#defender-btn {
+    position: relative;
+    float: right;
+    left: 370% !important;
+}
+
+#battle-log h2{
+    color: white;
+}
