@@ -44,23 +44,21 @@
     float: right;
 }
 
-#fight-buttons {
-    position: absolute;
-    margin-top: 15%;
-}
-
 #attack-btn {
     position: relative;
-    float: left;
-    left: 50% !important;
+    left: 5%;
 }
 
-#defender-btn {
+#battle-log {
     position: relative;
-    float: right;
-    left: 370% !important;
+    bottom: -35%;
+    left: 30%;
 }
 
-#battle-log h2{
-    color: white;
+h2{
+    color: white !important;
+}
+
+p{
+    color: white !important;
 }

@@ -27,9 +27,9 @@
 
         <!--Global-Stats all the way to the right-->
         <div id="global-stats">
-            <h1> <div id="total-wins"></div> :TOTAL WINS</h1>
-            <h1> <div id="wins"></div> :WINS</h1>
-            <h1> <div id="losses"></div> :LOSSES</h1>
+            <h2> TOTAL WINS: <div id="total-wins">0</div></h2>
+            <h2> WINS: <div id="wins">0</div></h2>
+            <h2> LOSSES: <div id="losses">0</div></h2>
         </div>
 
     </div>
@@ -39,37 +39,26 @@
         <!--Battle stage, characters and buttons occupying 11 cols-->
 
         <div class="col-10">
-            <div class="container">
 
-                <div class="row" id="figthers">
+                        <!--insert your chosen character-->
+                        
+                        <div class="container" id="selected-char">
+                        </div>
 
-                    <div id="your-character">
-                        <!--insert character-->
-                    </div>
 
-                    <div id="selected-defender">
-                        <!--insert character-->
-                    </div>
+                        <!--insert defender character-->
+                        <div class="container" id="defender">
+                        </div>
 
-                </div>
-
-                <div class="row" id="fight-buttons">
-
-                    <!--Fight and Defender buttons-->
+                        <!--Attack button-->
                         <button type="button" class="btn btn-danger" id="attack-btn">Attack</button>
-                    
-                        <button type="button" class="btn btn-warning" id="defender-btn">Choose a defender</button>
 
-                </div>
-
-                <div class="row" id="battle-log">
+                <div id="battle-log">
                     <h2>Battle Log:</h2>
-                    <br>
-                    <br>
-                    <p id="log"></p>
+                    <p id="log-attack"></p>
+                    <p id="log-defender"></p>
                 </div>
 
-            </div>
         </div>
 
         <div class="col-2">
@@ -91,6 +80,11 @@
                 <a>
                 <img class="img-fluid" src="assets/images/pikachu.png">
                 </a>
+
+                <!--enemies-->
+                <div class="container" id="enemies">
+                    <div class="section-title"></div>
+                  </div>
 
             </div>
         </div>
