@@ -4,98 +4,297 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RPG: Super Smash Bros</title>
-    <!--Css link-->
-    <link rel="stylesheet" type="text/css" href="assets/rpgstyle.css">
-    <!--Bootstrap-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <title>Super Smash Brothers RPG</title>
 
-    <style>
+<!--Favicon-->
+<link rel="icon" type="image/png" href="https://ih1.redbubble.net/image.227576629.1986/flat,800x800,075,f.u2.jpg">
+<!--Css link
+<link rel="stylesheet" type="text/css" href="assets/rpgstyle.css"> -->
+<!--Bootstrap-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    
+<style>
     
     body {
-        background-image: url("assets/images/smash-bros-stage.jpg");
+        background-image: url("assets/images/smash-bros-ring.jpg");
+        background-repeat:no-repeat;
+        background-size:cover;
     }
-    </style>
+    #logo {
+    width: 60%;
+    height: auto;
+    }
+    h1 {
+    color: white !important;
+    }
+    h2 {
+        color: #ff6666 !important;
+        margin-right: 10%;
+    }
+    h3 {
+        text-align: center;
+        color: #ff6666;
+    }
+    p {
+        color: white !important;
+    }
+    .row span{
+    width: 12%;
+    height: auto;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    }
+    .row span:hover{
+    background-color: green;
+    } 
+    #fight-section {
+        margin-top: 3%;
+    }
+    button {
+        margin-left: 50%;
+        margin-top: 10%; 
+    }
+    #mychar-log {
+        color: white !important;
+    }
+    #defender-log {
+        color: white !important;
+    }
+</style>
 
 </head>
-<body>
+<body onload="startMusic ()">
 
-    <div class="row" id="header">
+<div class="container">
 
-        <!--Logo all the way to the left-->
-        <img src="assets/images/smashbros-logo.png" id="logo" class="img-fluid">
+    <!--Header-->
+    <div class="row">
 
-        <!--Global-Stats all the way to the right-->
-        <div id="global-stats">
-            <h2> TOTAL WINS: <div id="total-wins">0</div></h2>
-            <h2> WINS: <div id="wins">0</div></h2>
-            <h2> LOSSES: <div id="losses">0</div></h2>
-        </div>
-
-    </div>
-
-    <div class="row" id="battle-stage">
-
-        <!--Battle stage, characters and buttons occupying 11 cols-->
-
-        <div class="col-10">
-
-                        <!--insert your chosen character-->
-                        
-                        <div class="container" id="selected-char">
-                        </div>
-
-
-                        <!--insert defender character-->
-                        <div class="container" id="defender">
-                        </div>
-
-                        <!--Attack button-->
-                        <button type="button" class="btn btn-danger" id="attack-btn">Attack</button>
-
-                <div id="battle-log">
-                    <h2>Battle Log:</h2>
-                    <p id="log-attack"></p>
-                    <p id="log-defender"></p>
-                </div>
-
-        </div>
-
-        <div class="col-2">
-            
-        <!--Choose your characters on the right col-->
-            <div id="characters">
-                <a>
-                    <img class="img-fluid" src="assets/images/kirby.png">
-                </a>
-
-                <a>
-                <img class="img-fluid" src="assets/images/link.png">
-                </a>
-                
-                <a>
-                <img class="img-fluid" src="assets/images/mario.png">
-                </a>
-
-                <a>
-                <img class="img-fluid" src="assets/images/pikachu.png">
-                </a>
-
-                <!--enemies-->
-                <div class="container" id="enemies">
-                    <div class="section-title"></div>
-                  </div>
-
+            <div class="col">
+                    <img src="assets/images/smashbros-logo.png" id="logo" class="img-fluid" alt="Smash Bros">
             </div>
+           
+            <div class="col">
+                    <h1>Wins: <div id="wins-counter"></div></h1>
+                    <h1>Losses: <div id="losses-counter"></div></h1>
+            </div>
+
+    </div>
+
+<!--Character Line Up-->
+    <div class="row">
+        <h2>Choose a Character:</h2>
+        <span id="kirby" onclick="clickKirby ()">
+            <img class="img-fluid" src="assets/images/kirby.png">
+            <p>Stamina: 250 <br>
+               Power: 25
+            </p>
+        </span>
+
+        <span id="link" onclick="clickLink ()">
+            <img class="img-fluid" src="assets/images/link.png">
+            <p>Stamina: 170 <br>
+                Power: 35
+             </p>
+        </span>
+            
+        <span id="mario" onclick="clickMario ()">
+            <img class="img-fluid" src="assets/images/mario.png">
+            <p>Stamina: 150 <br>
+                Power: 40
+             </p>
+        </span>
+
+        <span id="pikachu" onclick="clickPikachu ()">
+            <img class="img-fluid" src="assets/images/pikachu.png">
+            <p>Stamina: 200 <br>
+                Power: 30
+             </p>
+        </span>
+    </div>
+
+<!--Battle Log-->
+    <div class="row" id="fight-section">
+
+        <div class="col">
+
+            <div id="myChar" onclick="onClick ()">
+                    <!--inster myChar-->
+            </div>
+
+        </div>
+        
+        <div class="col">
+            <h3>Battle Log:</h3>
+            <br>
+            <div id="mychar-log">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</div>
+            <div id="defender-log">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</div>
+        </div>
+                  
+        <div class="col">
+                <div id="defender">Defender</div>
         </div>
 
     </div>
 
-    <!--JS link-->
-    <script type="text/javasript" src="assets/rpglogic.js"></script>
-    <!--Bootstrap JS-->
+</div>
+
+<!--Bootstrap JS-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+<!--Javacript-->
+<script>
+
+/*
+function startMusic () {
+    var smashMusic = document.createElement("audio");
+    smashMusic.setAttribute("src", "assets/images/Final-Destination-SuperSmashBrosBrawl.mp3")
+    smashMusic.loop = true;
+    smashMusic.setAttribute("autoplay", "autoplay");
+}
+*/
+
+// Global Variables
+
+var mario = {
+    id: document.getElementById("mario"),
+    imageUrl: "assets/images/mario.png",
+    stamina: 150,
+    power: 40    
+};
+
+var kirby = {
+    id: document.getElementById("kirby"),
+    imageUrl: "assets/images/kirby.png",
+    stamina: 250,
+    power: 25
+};
+
+var pikachu = {
+    id: document.getElementById("pikachu"),
+    imageUrl: "assets/images/pikachu.png",
+    stamina: 200,
+    power: 30
+};
+
+var link = {
+    id: document.getElementById("link"),
+        imageUrl: "assets/images/link.png",
+        stamina: 170,
+        power: 35
+};
+
+var bros = [mario, kirby, pikachu, link]
+
+var losses = 0;
+var wins = 0;
+var myChar;
+var defender;
+var enemies = [];
+
+// choose a character
+
+function clickMario () {
+
+if (mario.id.style.display !== "none") {
+    mario.id.style.display = "none";
+    addMario ();
+    } 
+};
+
+function clickKirby () {
+    if (kirby.id.style.display !== "none") {
+        kirby.id.style.display = "none";
+        addKirby ();
+    }
+};
+
+function clickPikachu () {
+    if (pikachu.id.style.display !== "none") {
+        pikachu.id.style.display = "none";
+        addPikachu ();
+    }
+};
+
+function clickLink () {
+    if (link.id.style.display !== "none") {
+        link.id.style.display = "none";
+        addLink ();
+    }
+};
+
+// add character to myChar
+function addMario () {
+    var marioAdd = document.createElement("span");
+    var marioImg = document.createElement("img");
+    marioImg.setAttribute("src", "assets/images/mario.png");
+    marioAdd.appendChild(marioImg);
+    document.getElementById("myChar").appendChild(marioAdd);
+    var marioStamina = document.createElement("p");
+    var marioS = document.createTextNode("stamina: "+mario.stamina);
+    marioStamina.appendChild(marioS);
+    marioAdd.appendChild(marioStamina);
+    var marioPower = document.createElement("p");
+    var marioP = document.createTextNode("power: "+mario.power);
+    marioPower.appendChild(marioP);
+    marioAdd.appendChild(marioPower);
+};
+
+function addKirby () {
+    var kirbyAdd = document.createElement("span");
+    var kirbyImg = document.createElement("img");
+    kirbyImg.setAttribute("src", "assets/images/kirby.png");
+    kirbyAdd.appendChild(kirbyImg);
+    document.getElementById("myChar").appendChild(kirbyAdd);
+    var kirbyStamina = document.createElement("p");
+    var kirbyS = document.createTextNode("stamina: "+kirby.stamina);
+    kirbyStamina.appendChild(kirbyS);
+    kirbyAdd.appendChild(kirbyStamina);
+    var kirbyPower = document.createElement("p");
+    var kirbyP = document.createTextNode("power: "+kirby.power);
+    kirbyPower.appendChild(kirbyP);
+    kirbyAdd.appendChild(kirbyPower);
+};
+
+function addPikachu () {
+    var pikachuAdd = document.createElement("span");
+    var pikachuImg = document.createElement("img");
+    pikachuImg.setAttribute("src", "assets/images/pikachu.png");
+    pikachuAdd.appendChild(pikachuImg);
+    document.getElementById("myChar").appendChild(pikachuAdd);
+    var pikachuStamina = document.createElement("p");
+    var pikachuS = document.createTextNode("stamina: "+pikachu.stamina);
+    pikachuStamina.appendChild(pikachuS);
+    pikachuAdd.appendChild(pikachuStamina);
+    var pikachuPower = document.createElement("p");
+    var pikachuP = document.createTextNode("power: "+pikachu.power);
+    pikachuPower.appendChild(pikachuP);
+    pikachuAdd.appendChild(pikachuPower);
+};
+
+function addLink () {
+    var linkAdd = document.createElement("span");
+    var linkImg = document.createElement("img");
+    linkImg.setAttribute("src", "assets/images/link.png");
+    linkAdd.appendChild(linkImg);
+    document.getElementById("myChar").appendChild(linkAdd);
+    var linkStamina = document.createElement("p");
+    var linkS = document.createTextNode("stamina: "+link.stamina);
+    linkStamina.appendChild(linkS);
+    linkAdd.appendChild(linkStamina);
+    var linkPower = document.createElement("p");
+    var linkP = document.createTextNode("power: "+link.power);
+    linkPower.appendChild(linkP);
+    linkAdd.appendChild(linkPower);
+};
+
+
+
+
+</script>
 </body>
 </html>
