@@ -237,7 +237,7 @@ var mario = {
     id: document.getElementById("mario"),
     name: "mario",
     imageUrl: "assets/images/mario.png",
-    stamina: 150,
+    stamina: 200,
     power: 40    
 };
 
@@ -261,7 +261,7 @@ var link = {
     id: document.getElementById("link"),
     name: "link",
     imageUrl: "assets/images/link.png",
-    stamina: 170,
+    stamina: 220,
     power: 35
 };
 
@@ -327,6 +327,7 @@ function addMario () {
     marioAdd.appendChild(marioImg);
     document.getElementById("myChar").appendChild(marioAdd);
     var marioStamina = document.createElement("p");
+    marioStamina.setAttribute("id", "mario-stam");
     var marioS = document.createTextNode("stamina: "+mario.stamina);
     marioStamina.appendChild(marioS);
     marioAdd.appendChild(marioStamina);
@@ -602,6 +603,7 @@ function addDefKirby () {
     kirbyAdd.appendChild(kirbyImg);
     document.getElementById("defender").appendChild(kirbyAdd);
     var kirbyStamina = document.createElement("p");
+    kirbyStamina.setAttribute("id", "kirby-stam");
     var kirbyS = document.createTextNode("stamina: "+kirby.stamina);
     kirbyStamina.appendChild(kirbyS);
     kirbyAdd.appendChild(kirbyStamina);
@@ -610,6 +612,7 @@ function addDefKirby () {
     kirbyPower.appendChild(kirbyP);
     kirbyAdd.appendChild(kirbyPower);  
 };
+
 
 // battle log
 
@@ -620,20 +623,52 @@ function attackOnClick () {
         var attackMssg = document.createTextNode("You attacked " + kirby.name + " for " + mario.power + " damage");
         MSG.appendChild(attackMssg);
         document.getElementById("mychar-log").appendChild(MSG);
-        console.log(attackMssg);
-        kirby.stamina = kirby.stamina - mario.power;
+        var kirbyStam = document.createTextNode(kirby.stamina - mario.power);
+        var stamHolder = document.getElementById("kirby-stam");
+        stamHolder.appendChild(kirbyStam);
+
+
     // defender attack
     var defMSG = document.createElement("p");
     var defenderMssg = document.createTextNode("You where damaged "+kirby.power +" by "+kirby.name);
     defMSG.appendChild(defenderMssg);
     document.getElementById("defender-log").appendChild(defMSG);
-    mario.stamina = mario.stamina - kirby.power;
+    var marioStam = document.createTextNode(mario.stamina - kirby.power);
+    console.log(marioStam);
+    var stamHolder2 = document.getElementById("mario-stam");
+    stamHolder2.appendChild(marioStam);
 
-    if (kirby.stamina == 0) {
+hitSound ();
+
+    if (kirby.stamina !== 0) {
+        kirby.stamina = kirby.stamina - mario.power;
+        console.log(kirby.stamina);
+        mario.stamina = mario.stamina - kirby.power
+        console.log(mario.stamina);
+        
+        if (kirby.stamina <= 0) {
         alert("Mario Wins");
+        wins++;
+        wins = document.createTextNode(wins++);
+        var winHolder = document.getElementById("wins-counter");
+        winHolder.appendChild(wins);
+        var banish = document.getElementById("battleKirby");
+        banish.style.display = "none";
+        alert("Choose another contender");
+        MSG.style.display = "none";
+        defMSG.style.display = "none";
     } 
+} 
 
 };
+
+// hit sounds
+function hitSound () {
+    var hitSound = document.createElement("audio");
+    hitSound.setAttribute("src", "assets/images/hit10.wav")
+    hitSound.loop = false;
+    hitSound.setAttribute("autoplay", "autoplay");
+}
 
 
 </script>
