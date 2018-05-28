@@ -290,6 +290,7 @@ var losses = 0;
 var wins = 0;
 var myChar;
 var defender;
+var attackBTN
 
 // choose a character
 
@@ -344,7 +345,6 @@ function addMario () {
     var marioImg = document.createElement("img");
     marioAdd.setAttribute("id", "myMario");
     marioImg.setAttribute("src", "assets/images/mario.png");
-    marioImg.setAttribute("onclick", "attackOnClick ()");
     marioAdd.appendChild(marioImg);
     document.getElementById("myChar").appendChild(marioAdd);
     var marioStamina = document.createElement("p");
@@ -356,6 +356,14 @@ function addMario () {
     var marioP = document.createTextNode("power: "+mario.power);
     marioPower.appendChild(marioP);
     marioAdd.appendChild(marioPower);
+    // on click event button
+    attackBTN = document.createElement("button");
+    attackBTN.setAttribute("class", "btn btn-danger");
+    attackBTN.setAttribute("type", "button");
+    attackBTN.setAttribute("onclick", "hitSound (); attackOnClick()");
+    var btnText = document.createTextNode("Smash, bro!");
+    attackBTN.appendChild(btnText);
+    marioAdd.prepend(attackBTN);
 };
 
 function addKirby () {
@@ -373,6 +381,14 @@ function addKirby () {
     var kirbyP = document.createTextNode("power: "+kirby.power);
     kirbyPower.appendChild(kirbyP);
     kirbyAdd.appendChild(kirbyPower);
+    // on click event button
+    attackBTN = document.createElement("button");
+    attackBTN.setAttribute("class", "btn btn-danger");
+    attackBTN.setAttribute("type", "button");
+    attackBTN.setAttribute("onclick", "attackOnClick ()");
+    var btnText = document.createTextNode("Smash, bro!");
+    attackBTN.appendChild(btnText);
+    kirbyAdd.prepend(attackBTN);
 };
 
 function addPikachu () {
@@ -390,6 +406,14 @@ function addPikachu () {
     var pikachuP = document.createTextNode("power: "+pikachu.power);
     pikachuPower.appendChild(pikachuP);
     pikachuAdd.appendChild(pikachuPower);
+    // on click event button
+    attackBTN = document.createElement("button");
+    attackBTN.setAttribute("class", "btn btn-danger");
+    attackBTN.setAttribute("type", "button");
+    attackBTN.setAttribute("onclick", "attackOnClick ()");
+    var btnText = document.createTextNode("Smash, bro!");
+    attackBTN.appendChild(btnText);
+    pikachuAdd.prepend(attackBTN);
 };
 
 function addLink () {
@@ -407,6 +431,14 @@ function addLink () {
     var linkP = document.createTextNode("power: "+link.power);
     linkPower.appendChild(linkP);
     linkAdd.appendChild(linkPower);
+    // on click event button
+    attackBTN = document.createElement("button");
+    attackBTN.setAttribute("class", "btn btn-danger");
+    attackBTN.setAttribute("type", "button");
+    attackBTN.setAttribute("onclick", "attackOnClick ()");
+    var btnText = document.createTextNode("Smash, bro!");
+    attackBTN.appendChild(btnText);
+    linkAdd.prepend(attackBTN);
 };
 
 // add the rest of the characters to "select defender";
@@ -718,9 +750,17 @@ function addDefMario () {
 }
 // battle log
 
-function attackOnClick () {
-    // you attack
-        console.log("click")
+
+function attackOnClick() {
+
+    if (kirby.stamina !== 0) {
+        kirby.stamina = kirby.stamina - mario.power;
+        console.log(kirby.stamina);
+        mario.stamina = mario.stamina - kirby.power
+        console.log(mario.stamina);
+        
+        // you attack
+        console.log("click");
         var MSG = document.createElement("p");
         var attackMssg = document.createTextNode("You attacked " + kirby.name + " for " + mario.power + " damage");
         MSG.appendChild(attackMssg);
@@ -740,29 +780,94 @@ function attackOnClick () {
     var stamHolder2 = document.getElementById("mario-stam");
     stamHolder2.appendChild(marioStam);
 
-hitSound ();
-
-    if (kirby.stamina !== 0) {
-        kirby.stamina = kirby.stamina - mario.power;
-        console.log(kirby.stamina);
-        mario.stamina = mario.stamina - kirby.power
-        console.log(mario.stamina);
-        
         if (kirby.stamina <= 0) {
-        alert("Mario Wins");
-        wins++;
-        wins = document.createTextNode(wins++);
-        var winHolder = document.getElementById("wins-counter");
-        winHolder.appendChild(wins);
         var banish = document.getElementById("battleKirby");
         banish.style.display = "none";
-        alert("Choose another contender");
         MSG.style.display = "none";
         defMSG.style.display = "none";
+        var winHolder = document.getElementById("wins-counter").innerHTML = wins++;
     } 
-} 
+      
+};
+
+// attack link
+if (link.stamina !== 0 && kirby.stamina < 0) {
+    link.stamina = link.stamina - mario.power;
+        console.log(link.stamina);
+        mario.stamina = mario.stamina = 170;
+        console.log(mario.stamina);
+        
+        // you attack
+        console.log("click");
+        var MSG = document.createElement("p");
+        var attackMssg = document.createTextNode("You attacked " + link.name + " for " + mario.power + " damage");
+        MSG.appendChild(attackMssg);
+        document.getElementById("mychar-log").prepend(MSG);
+        var linkStam = document.createTextNode(link.stamina - mario.power);
+        var stamHolder = document.getElementById("link-stam");
+        stamHolder.appendChild(linkStam);
+
+
+    // defender attack
+    var defMSG = document.createElement("p");
+    var defenderMssg = document.createTextNode("You where damaged "+link.power +" by "+link.name);
+    defMSG.appendChild(defenderMssg);
+    document.getElementById("defender-log").prepend(defMSG);
+    var marioStam = document.createTextNode(mario.stamina - link.power);
+    console.log(marioStam);
+    var stamHolder2 = document.getElementById("mario-stam");
+    stamHolder2.appendChild(marioStam);
+
+        if (link.stamina <= 0) {
+        var banish = document.getElementById("battleLink");
+        banish.style.display = "none";
+        MSG.style.display = "none";
+        defMSG.style.display = "none";
+        var winHolder = document.getElementById("wins-counter").innerHTML = wins++;
+}
+};
+
+// attack pikachu
+if (pikachu.stamina !== 0 && link.stamina < 0 && kirby.stamina < 0) {
+    pikachu.stamina = pikachu.stamina - mario.power;
+        console.log(pikachu.stamina);
+        mario.stamina = 150;
+        console.log(mario.stamina);
+        
+        // you attack
+        console.log("click");
+        var MSG = document.createElement("p");
+        var attackMssg = document.createTextNode("You attacked " + pikachu.name + " for " + mario.power + " damage");
+        MSG.appendChild(attackMssg);
+        document.getElementById("mychar-log").prepend(MSG);
+        var pikachuStam = document.createTextNode(pikachu.stamina - mario.power);
+        var stamHolder = document.getElementById("pikachu-stam");
+        stamHolder.append(pikachuStam);
+
+
+    // defender attack
+    var defMSG = document.createElement("p");
+    var defenderMssg = document.createTextNode("You where damaged "+pikachu.power +" by "+pikachu.name);
+    defMSG.appendChild(defenderMssg);
+    document.getElementById("defender-log").prepend(defMSG);
+    var marioStam = document.createTextNode(mario.stamina - pikachu.power);
+    console.log(marioStam);
+    var stamHolder2 = document.getElementById("mario-stam");
+    stamHolder2.appendChild(marioStam);
+
+        if (pikachu.stamina <= 0) {
+        var banish = document.getElementById("battlePikachu");
+        banish.style.display = "none";
+        MSG.style.display = "none";
+        defMSG.style.display = "none";
+        var winHolder = document.getElementById("wins-counter").innerHTML = wins++;
+        alert("MARIO WINS");
+}
+};
 
 };
+
+
 // hit sounds
 function hitSound () {
     var hitSound = document.createElement("audio");
